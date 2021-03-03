@@ -24,11 +24,20 @@ public class WekaPro {
 //        model.saveData("E:\\iris.arff");
 //        model.saveData2CSV("E:\\iris.csv");
         
-        MyAprioriModel model = new MyAprioriModel(
-                "C:\\Program Files\\Weka-3-9-5\\data\\weather.numeric.arff",
-                "-N 10 -T 0 -C 0.9 -D 0.05 -U 1.0 -M 0.15 -S -1.0 -c -1",
-                "-R 2-3");
-        model.mineAssociatetionRules();
+//        MyAprioriModel model = new MyAprioriModel(
+//                "C:\\Program Files\\Weka-3-9-5\\data\\weather.numeric.arff",
+//                "-N 10 -T 0 -C 0.9 -D 0.05 -U 1.0 -M 0.15 -S -1.0 -c -1",
+//                "-R 2-3");
+//        model.mineAssociatetionRules();
+//        System.out.print(model);
+
+        MyFPGrowthModel model = new MyFPGrowthModel(
+                "C:\\Program Files\\Weka-3-9-5\\data\\weather.nominal.arff",
+                "-P 2 -I -1 -N 10 -T 0 -C 0.8 -D 0.05 -U 1.0 -M 0.2",
+                "-N -R first-last"
+        );
+        
+        model.mineAssociationRule();
         System.out.print(model);
     }
     
