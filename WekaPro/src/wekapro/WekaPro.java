@@ -14,8 +14,14 @@ public class WekaPro {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         // TODO code application logic here
+        MyKnowledgeModel model = new MyKnowledgeModel(
+                "C:\\Program Files\\Weka-3-9-5\\data\\iris.arff");
+        
+        System.out.println(model);
+        model.saveData("E:\\iris.arff");
+        model.saveData2CSV("E:\\iris.csv");
     }
     
 }
