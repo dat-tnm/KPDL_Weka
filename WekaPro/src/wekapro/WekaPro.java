@@ -31,14 +31,22 @@ public class WekaPro {
 //        model.mineAssociatetionRules();
 //        System.out.print(model);
 
-        MyFPGrowthModel model = new MyFPGrowthModel(
-                "C:\\Program Files\\Weka-3-9-5\\data\\weather.nominal.arff",
-                "-P 2 -I -1 -N 10 -T 0 -C 0.8 -D 0.05 -U 1.0 -M 0.2",
-                "-N -R first-last"
-        );
-        
-        model.mineAssociationRule();
+//        MyFPGrowthModel model = new MyFPGrowthModel(
+//                "C:\\Program Files\\Weka-3-9-5\\data\\weather.nominal.arff",
+//                "-P 2 -I -1 -N 10 -T 0 -C 0.8 -D 0.05 -U 1.0 -M 0.2",
+//                "-N -R first-last"
+//        );
+//        
+//        model.mineAssociationRule();
+//        System.out.print(model);
+
+        MyKnowledgeModel model = new MyKnowledgeModel(
+                "C:\\Program Files\\Weka-3-9-5\\data\\iris.arff", null, null);
+        model.trainset = model.divideTrainTestResample(model.dataset, 80, false);
+        model.testset = model.divideTrainTestResample(model.dataset, 80, true);
         System.out.print(model);
+        System.out.print(model.trainset.toSummaryString());
+        System.out.print(model.testset.toSummaryString());
     }
     
 }
