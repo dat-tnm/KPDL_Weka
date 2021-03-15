@@ -5,6 +5,8 @@
  */
 package wekapro;
 
+import weka.classifiers.trees.J48;
+
 /**
  *
  * @author Admin
@@ -40,13 +42,23 @@ public class WekaPro {
 //        model.mineAssociationRule();
 //        System.out.print(model);
 
-        MyKnowledgeModel model = new MyKnowledgeModel(
-                "C:\\Program Files\\Weka-3-9-5\\data\\iris.arff", null, null);
-        model.trainset = model.divideTrainTestResample(model.dataset, 80, false);
-        model.testset = model.divideTrainTestResample(model.dataset, 80, true);
-        System.out.print(model);
-        System.out.print(model.trainset.toSummaryString());
-        System.out.print(model.testset.toSummaryString());
+//        MyKnowledgeModel model = new MyKnowledgeModel(
+//                "C:\\Program Files\\Weka-3-9-5\\data\\iris.arff", null, null);
+//        model.trainset = model.divideTrainTestResample(model.dataset, 80, false);
+//        model.testset = model.divideTrainTestResample(model.dataset, 80, true);
+//        System.out.print(model);
+//        System.out.print(model.trainset.toSummaryString());
+//        System.out.print(model.testset.toSummaryString());
+
+        MyDecisionTreeModel model = new MyDecisionTreeModel(
+                "C:\\Program Files\\Weka-3-9-5\\data\\iris.arff",
+                "-C 0.25 -M 2", null);
+        model.buildDecisionTree();
+        model.evaluateDecisionTree();
+        System.out.println(model);
+        //model.saveModel("E:\\decisionTree.model", model.tree);
+        model.tree = (J48)model.loadModel("E:\\decisionTree.model");
+        model.predictClassLabel(model.testset);
     }
     
 }
