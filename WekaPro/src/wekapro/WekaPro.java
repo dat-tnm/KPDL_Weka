@@ -50,15 +50,22 @@ public class WekaPro {
 //        System.out.print(model.trainset.toSummaryString());
 //        System.out.print(model.testset.toSummaryString());
 
-        MyDecisionTreeModel model = new MyDecisionTreeModel(
-                "C:\\Program Files\\Weka-3-9-5\\data\\iris.arff",
-                "-C 0.25 -M 2", null);
-        model.buildDecisionTree();
-        model.evaluateDecisionTree();
+//        MyDecisionTreeModel model = new MyDecisionTreeModel(
+//                "C:\\Program Files\\Weka-3-9-5\\data\\iris.arff",
+//                "-C 0.25 -M 2", null);
+//        model.buildDecisionTree();
+//        model.evaluateDecisionTree();
+//        System.out.println(model);
+//        //model.saveModel("E:\\decisionTree.model", model.tree);
+//        model.tree = (J48)model.loadModel("E:\\decisionTree.model");
+//        model.predictClassLabel(model.testset);
+        
+        MyNaiveBayesModel model = new MyNaiveBayesModel();
+        model.buildNaiveBayes("C:\\Users\\Admin\\Desktop\\weka_files\\iris_train.arff");
+        model.evaluateNaiveBayes("C:\\Users\\Admin\\Desktop\\weka_files\\iris_test.arff");
+        model.predictClassLabel("C:\\Users\\Admin\\Desktop\\weka_files\\iris.arff",
+                "C:\\Users\\Admin\\Desktop\\weka_files\\iris_predict.arff");
         System.out.println(model);
-        //model.saveModel("E:\\decisionTree.model", model.tree);
-        model.tree = (J48)model.loadModel("E:\\decisionTree.model");
-        model.predictClassLabel(model.testset);
     }
     
 }
