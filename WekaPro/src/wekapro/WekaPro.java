@@ -60,7 +60,15 @@ public class WekaPro {
 //        model.tree = (J48)model.loadModel("E:\\decisionTree.model");
 //        model.predictClassLabel(model.testset);
         
-        MyNaiveBayesModel model = new MyNaiveBayesModel();
+//        MyNaiveBayesModel model = new MyNaiveBayesModel();
+//        model.buildNaiveBayes("C:\\Users\\Admin\\Desktop\\weka_files\\iris_train.arff");
+//        model.evaluateNaiveBayes("C:\\Users\\Admin\\Desktop\\weka_files\\iris_test.arff");
+//        model.predictClassLabel("C:\\Users\\Admin\\Desktop\\weka_files\\iris.arff",
+//                "C:\\Users\\Admin\\Desktop\\weka_files\\iris_predict.arff");
+//        System.out.println(model);
+        
+        MyNaiveBayesModel model = new MyNaiveBayesModel("",
+            "-L 0.3 -M 0.2 -N 500 -V 0 -S 0 -E 20 -H a -R", null);
         model.buildNaiveBayes("C:\\Users\\Admin\\Desktop\\weka_files\\iris_train.arff");
         model.evaluateNaiveBayes("C:\\Users\\Admin\\Desktop\\weka_files\\iris_test.arff");
         model.predictClassLabel("C:\\Users\\Admin\\Desktop\\weka_files\\iris.arff",
