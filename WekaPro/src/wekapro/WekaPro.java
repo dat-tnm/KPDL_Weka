@@ -67,11 +67,19 @@ public class WekaPro {
 //                "C:\\Users\\Admin\\Desktop\\weka_files\\iris_predict.arff");
 //        System.out.println(model);
         
-        MyNaiveBayesModel model = new MyNaiveBayesModel("",
-            "-L 0.3 -M 0.2 -N 500 -V 0 -S 0 -E 20 -H a -R", null);
-        model.buildNaiveBayes("C:\\Users\\Admin\\Desktop\\weka_files\\iris_train.arff");
-        model.evaluateNaiveBayes("C:\\Users\\Admin\\Desktop\\weka_files\\iris_test.arff");
-        model.predictClassLabel("C:\\Users\\Admin\\Desktop\\weka_files\\iris.arff",
+//        MyNeuralNetworkModel model = new MyNeuralNetworkModel("",
+//            "-L 0.3 -M 0.2 -N 500 -V 0 -S 0 -E 20 -H a -R", null);
+//        model.buildNeuralNetwork("C:\\Users\\Admin\\Desktop\\weka_files\\iris_train.arff");
+//        model.evaluateNeuralNetwork("C:\\Users\\Admin\\Desktop\\weka_files\\iris_test.arff");
+//        model.predictClassLabel("C:\\Users\\Admin\\Desktop\\weka_files\\iris_unlabel.arff",
+//                "C:\\Users\\Admin\\Desktop\\weka_files\\iris_predict.arff");
+//        System.out.println(model);
+
+        MySVMModel model = new MySVMModel("",
+            "SMO -C 1.0 -L 0.001 -P 1.0E-12 -N 0 -V -1 -W 1 -K \"weka.classifiers.functions.supportVector.PolyKernel -E 1.0 -C 250007\" -calibrator \"weka.classifiers.functions.Logistic -R 1.0E-8 -M -1 -num-decimal-places 4\"", null);
+        model.buildSVM("C:\\Users\\Admin\\Desktop\\weka_files\\iris_train.arff");
+        model.evaluateSVM("C:\\Users\\Admin\\Desktop\\weka_files\\iris_test.arff");
+        model.predictClassLabel("C:\\Users\\Admin\\Desktop\\weka_files\\iris_unlabel.arff",
                 "C:\\Users\\Admin\\Desktop\\weka_files\\iris_predict.arff");
         System.out.println(model);
     }
