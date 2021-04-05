@@ -76,12 +76,20 @@ public class WekaPro {
 //        System.out.println(model);
 
         MySVMModel model = new MySVMModel("",
-            "SMO -C 1.0 -L 0.001 -P 1.0E-12 -N 0 -V -1 -W 1 -K \"weka.classifiers.functions.supportVector.PolyKernel -E 1.0 -C 250007\" -calibrator \"weka.classifiers.functions.Logistic -R 1.0E-8 -M -1 -num-decimal-places 4\"", null);
+            "-C 1.0 -L 0.001 -P 1.0E-12 -N 0 -V -1 -W 1 -K \"weka.classifiers.functions.supportVector.PolyKernel -E 1.0 -C 250007\" -calibrator \"weka.classifiers.functions.Logistic -R 1.0E-8 -M -1 -num-decimal-places 4\"", null);
         model.buildSVM("C:\\Users\\Admin\\Desktop\\weka_files\\iris_train.arff");
         model.evaluateSVM("C:\\Users\\Admin\\Desktop\\weka_files\\iris_test.arff");
         model.predictClassLabel("C:\\Users\\Admin\\Desktop\\weka_files\\iris_unlabel.arff",
                 "C:\\Users\\Admin\\Desktop\\weka_files\\iris_predict.arff");
         System.out.println(model);
+        
+//        MyKNNModel model = new MyKNNModel("",
+//            "-K 5 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"", null);
+//        model.buildKNN("C:\\Users\\Admin\\Desktop\\weka_files\\iris_train.arff");
+//        model.evaluateKNN("C:\\Users\\Admin\\Desktop\\weka_files\\iris_test.arff");
+//        model.predictClassLabel("C:\\Users\\Admin\\Desktop\\weka_files\\iris_unlabel.arff",
+//                "C:\\Users\\Admin\\Desktop\\weka_files\\iris_predict.arff");
+//        System.out.println(model);
     }
     
 }

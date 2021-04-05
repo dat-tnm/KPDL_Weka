@@ -8,7 +8,7 @@ package wekapro;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import weka.classifiers.Evaluation;
-import weka.classifiers.bayes.NaiveBayes;
+import weka.classifiers.lazy.IBk;
 import weka.core.Debug;
 import weka.core.Debug.Random;
 import weka.core.Instances;
@@ -18,32 +18,29 @@ import weka.core.converters.ConverterUtils.DataSource;
  *
  * @author Admin
  */
-public class MyNaiveBayesModel extends MyKnowledgeModel {
-    NaiveBayes nbayes;
+public class MyKNNModel extends MyKnowledgeModel {
+    IBk knn;
+    Evaluation eval;
 
-    public MyNaiveBayesModel() {
-        super();
-    }
-
-    public MyNaiveBayesModel(String filename, String m_opts, String d_opts) throws Exception {
+    public MyKNNModel(String filename, String m_opts, String d_opts) throws Exception {
         super(filename, m_opts, d_opts);
     }
     
-    public void buildNaiveBayes(String filename) throws Exception{
+    public void buildKNN(String filename) throws Exception{
         setTrainset(filename);
         this.trainset.setClassIndex(this.trainset.numAttributes() - 1);
-        this.nbayes = new NaiveBayes();
-        nbayes.setOptions(model_options);
-        nbayes.buildClassifier(this.trainset);
+        this.knn = new IBk();
+        knn.setOptions(model_options);
+        knn.buildClassifier(this.trainset);
     }
     
-    public void evaluateNaiveBayes(String filename) throws Exception{
+    public void evaluateKNN(String filename) throws Exception{
         setTestset(filename);
         this.testset.setClassIndex(this.testset.numAttributes() - 1);
         Random rnd = new Debug.Random(1);
         int folds = 10;
-        Evaluation eval = new Evaluation(this.trainset);
-        eval.crossValidateModel(this.nbayes, this.testset, folds, rnd);
+        eval = new Evaluation(this.trainset);
+        eval.crossValidateModel(this.knn, this.testset, folds, rnd);
         System.out.println(eval.toSummaryString(
             "\nKet qua danh gia mo hinh 10-folds cross validation -------------\n", false));
     }
@@ -54,7 +51,7 @@ public class MyNaiveBayesModel extends MyKnowledgeModel {
         unlabel.setClassIndex(unlabel.numAttributes() - 1);
         //predict label for each instance
         for (int i = 0; i < unlabel.numInstances(); i++) {
-            double predict = this.nbayes.classifyInstance(unlabel.instance(i));
+            double predict = this.knn.classifyInstance(unlabel.instance(i));
             unlabel.instance(i).setClassValue(predict);
         }
         
@@ -67,6 +64,6 @@ public class MyNaiveBayesModel extends MyKnowledgeModel {
 
     @Override
     public String toString() {
-        return this.nbayes.toString();
+        return this.knn.toString();
     }
 }

@@ -29,6 +29,7 @@ public class MySVMModel extends MyKnowledgeModel {
         setTrainset(filename);
         this.trainset.setClassIndex(this.trainset.numAttributes() - 1);
         this.svm = new SMO();
+        svm.setOptions(model_options);
         svm.buildClassifier(this.trainset);
     }
     
