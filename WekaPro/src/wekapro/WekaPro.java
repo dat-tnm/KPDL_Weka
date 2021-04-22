@@ -7,6 +7,8 @@ package wekapro;
 
 import wekapro.emsembles.MyBaggingModel;
 import weka.classifiers.trees.J48;
+import wekapro.cluster.MyEMModel;
+import wekapro.cluster.MyKMeansModel;
 import wekapro.emsembles.MyBlendingModel;
 import wekapro.emsembles.MyBoostingModel;
 import wekapro.emsembles.MyVotingModel;
@@ -119,13 +121,23 @@ public class WekaPro {
 //                "C:\\Users\\Admin\\Desktop\\weka_files\\iris_predict_vote.arff");
 //        System.out.println(model);
         
-        MyBlendingModel model = new MyBlendingModel("",
-            "-K 5 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"", null);
-        model.buildBlendingModel("C:\\Users\\Admin\\Desktop\\weka_files\\iris_train.arff");
-        model.evaluateBlendingModel("C:\\Users\\Admin\\Desktop\\weka_files\\iris_test.arff");
-        model.predictClassLabel("C:\\Users\\Admin\\Desktop\\weka_files\\iris_unlabel.arff",
-                "C:\\Users\\Admin\\Desktop\\weka_files\\iris_predict_blending.arff");
-        System.out.println(model);
+//        MyBlendingModel model = new MyBlendingModel("",
+//            null, null);
+//        model.buildBlendingModel("C:\\Users\\Admin\\Desktop\\weka_files\\iris_train.arff");
+//        model.evaluateBlendingModel("C:\\Users\\Admin\\Desktop\\weka_files\\iris_test.arff");
+//        model.predictClassLabel("C:\\Users\\Admin\\Desktop\\weka_files\\iris_unlabel.arff",
+//                "C:\\Users\\Admin\\Desktop\\weka_files\\iris_predict_blending.arff");
+//        System.out.println(model);
+
+        MyKMeansModel model = new MyKMeansModel("", null, null);
+        model.buildKMeansModel("C:\\Users\\Admin\\Desktop\\weka_files\\iris_cluster_train.arff");
+        model.predictCluster("C:\\Users\\Admin\\Desktop\\weka_files\\iris_cluster_unlabel.arff");
+        System.out.println("Finished");
+//        
+//        MyEMModel model = new MyEMModel("", null, null);
+//        model.buildEMModel("C:\\Users\\Admin\\Desktop\\weka_files\\iris_cluster_train.arff");
+//        model.predictCluster("C:\\Users\\Admin\\Desktop\\weka_files\\iris_cluster_unlabel.arff");
+//        System.out.println("Finished");
     }
     
 }
